@@ -1,0 +1,539 @@
+m<!DOCTYPE html>
+ <html lang="en">
+ <head>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+   <title>BLOCK-FACE AI</title>
+ 
+   <!-- Font Awesome -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+ 
+   <style>
+     body {
+       margin: 0;
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       color: #fff;
+       background: #0f2027;
+       background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+       scroll-behavior: smooth;
+       overflow-x: hidden;
+     }
+ 
+     header {
+       background: rgba(0,0,0,0.7);
+       padding: 3rem 1rem;
+       text-align: center;
+       position: relative;
+       z-index: 2;
+     }
+ 
+     header h1 {
+       margin-bottom: 0.5rem;
+       font-size: 2.8rem;
+       color: #00ffff;
+       text-shadow: 0 0 10px #00ffff;
+     }
+ 
+     section {
+       padding: 2.5rem 4rem;
+       border-bottom: 1px solid rgba(255,255,255,0.1);
+       opacity: 0;
+       transform: translateY(20px);
+       transition: all 0.8s ease-out;
+       position: relative;
+       z-index: 2;
+     }
+ 
+     section.visible {
+       opacity: 1;
+       transform: translateY(0);
+     }
+ 
+     h2 {
+       color: #00ffff;
+       text-shadow: 0 0 5px #00ffff;
+     }
+ 
+     ul {
+       margin-left: 1.5rem;
+     }
+ 
+     .highlight {
+       background: rgba(255, 255, 255, 0.05);
+       padding: 1rem;
+       border-left: 4px solid #00ffff;
+       margin-top: 1rem;
+     }
+ 
+     .icon {
+       margin-right: 0.5rem;
+       color: #00ffff;
+     }
+ 
+     .diagram {
+       text-align: center;
+       margin-top: 2rem;
+     }
+ 
+     .diagram img {
+       width: 80%;
+       max-width: 500px;
+       border: 1px solid #aaa;
+       border-radius: 10px;
+     }
+ 
+     .matrix-bg {
+       position: fixed;
+       top: 0; left: 0;
+       width: 100%; height: 100%;
+       z-index: 0;
+       overflow: hidden;
+       pointer-events: none;
+     }
+ 
+     .scan-effect {
+       position: relative;
+       text-align: center;
+       margin: 2rem 0;
+     }
+ 
+     .scan-effect::before {
+       content: "";
+       position: absolute;
+       top: 0; left: 50%;
+       width: 100px;
+       height: 100%;
+       background: linear-gradient(to bottom, transparent, #00ffff60, transparent);
+       animation: scan 2s infinite;
+       transform: translateX(-50%);
+     }
+ 
+     @keyframes scan {
+       0% { top: 0%; }
+       100% { top: 100%; }
+     }
+ 
+     canvas {
+       display: block;
+     }
+ 
+     @media (max-width: 768px) {
+       section {
+         padding: 2rem 1.5rem;
+       }
+ 
+       .diagram img {
+         width: 100%;
+       }
+     }
+   </style>
+ </head>
+ <body>
+ 
+ 
+ 
+ <head>
+     <title>BLOCK-FACE AI</title>
+ </head>
+ <body style="text-align:center; font-family:sans-serif;">
+     <h1>BLOCK-FACE AI</h1>
+     <p>Face recognition, fraud detection & deepfake alerting system</p>
+ 
+     <form method="POST" enctype="multipart/form-data">
+         <input type="file" name="file" required><br><br>
+         <button type="submit">Verify Face</button>
+     </form>
+ 
+     {% if result %}
+         <h3>{{ result }}</h3>
+     {% endif %}
+ 
+     <h2>Admin Dashboard</h2>
+     <p>Verified Users: {{ verified }}</p>
+     <p>Detected Deepfakes: {{ deepfakes }}</p>
+ </body>
+ 
+ <div class="matrix-bg">
+   <canvas id="matrixCanvas"></canvas>
+ </div>
+ 
+ 
+ 
+ 
+ <header>
+   <h1>BLOCK-FACE AI</h1>
+   <p><i class="fas fa-users icon"></i>Mudrika Patel,     Priyanshu Kumar Gupta,     Sweeti Chouhan,     Himanshu Kumar</p>
+ </header>
+ 
+ <section>
+   <h2><i class="fas fa-bolt icon"></i>Introduction</h2>
+   <p>This project focuses on detecting fake identities using AI and facial recognition to fight fraud like identity theft, deepfakes, and spoofing in today's digital world.</p>
+   <p>The topic revolves around 
+     creating a clone-recognizing 
+     website aimed at detecting fake 
+     identities and combating fraud 
+     using advanced AI and facial 
+     recognition techniques. 
+   </p>
+     <p>Fraudulent activities, such as 
+       identity theft, deepfakes, and 
+       spoofing, 
+       
+     </p>
+ </section>
+ 
+ 
+ 
+ 
+ <section>
+   <h2><i class="fas fa-microchip icon"></i>Basic AI Methods</h2>
+   <ul>
+     <li><strong>GANs:</strong> Face swaps (StyleGAN, DeepFake)</li>
+     <li><strong>Autoencoders:</strong> Feature transfer</li>
+     <li><strong>Pix2Pix, CycleGAN:</strong> Domain transformations</li>
+     <li><strong>Dlib/OpenCV:</strong> Facial feature alignment</li>
+     <li><strong>CNNs:</strong> Face detection, segmentation</li>
+     <li><strong>GHOST:</strong> One-shot face swapping</li>
+   </ul>
+ </section>
+ 
+ <section>
+   <h2><i class="fas fa-project-diagram icon"></i>System Architecture</h2>
+   <div class="highlight">
+     <p><strong>Frontend:</strong> User uploads and result view<br />
+     <strong>Backend:</strong> AI models and secure data handling<br />
+     <strong>AI Models:</strong> FaceNet, DeepFace, custom models</p>
+   </div>
+   <div class="diagram scan-effect">
+     <a href="index3.html">deep fake detection</a>
+   </div>
+   
+ </section>
+ 
+ <section>
+   <h2><i class="fas fa-star icon"></i>Key Features</h2>
+   <ul>
+     <li>Real-time facial verification</li>
+     <li>Liveness detection using gestures</li>
+     <li>Deepfake detection via AI</li>
+     <li>Secure user management system</li>
+   </ul>
+ </section>
+ 
+ <section>
+   <h2><i class="fas fa-check icon"></i>Conclusion</h2>
+   <p>BLOCK-FACE AI enhances digital security by using AI for fraud detection, building user trust, and preventing misuse of identities in modern systems.</p>
+   <p>resolves Ineffectiveness of traditional 
+     methods (e.g., passwords) against 
+     identity fraud.</p>
+     <p></p>
+ </section>
+ <header class="text-white text-center p-6 bg-gradient-to-r from-red-600 to-blue-600 animate-pulse">
+   <h1 class="text-4xl font-bold tracking-widest">BLOCK-FACE AI</h1>
+   <p class="text-lg mt-2">Real-time Face Authentication and Deepfake Detection</p>
+ </header>
+ 
+ <section class="p-6">
+   <h2 class="text-3xl font-semibold text-yellow-400 mb-4">Problem Statement</h2>
+   <ul class="space-y-2">
+     <li>🔒 Ineffectiveness of passwords and traditional methods against identity fraud.</li>
+     <li>🎭 Difficulty in detecting deepfakes and manipulated media.</li>
+     <li>🛡️ Users' growing concern over privacy and data misuse.</li>
+     <li>🚀 Our system BLOCK-FACE AI aims to solve all these issues with AI-based verification.</li>
+   </ul>
+ </section>
+ 
+ <section class="p-6">
+   <h2 class="text-3xl font-semibold text-green-400 mb-4">System Architecture</h2>
+   <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+     <div class="bg-gray-900 p-4 rounded-lg shadow-md">🖼️ <strong>Frontend:</strong> User uploads, real-time face detection, verification.</div>
+     <div class="bg-gray-900 p-4 rounded-lg shadow-md">🧠 <strong>AI Models:</strong> FaceNet, DeepFace, or custom models for verification and deepfake detection.</div>
+     <div class="bg-gray-900 p-4 rounded-lg shadow-md">🔐 <strong>Backend:</strong> AI-powered secure data handling & analysis.</div>
+     <div class="bg-gray-900 p-4 rounded-lg shadow-md">📊 <strong>Overview:</strong> Clear modular structure for flexibility and security.</div>
+   </div>
+ </section>
+ 
+ <section class="p-6">
+   <h2 class="text-3xl font-semibold text-red-400 mb-4">Key Features</h2>
+   <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+     <li class="bg-gray-800 p-4 rounded-lg">🧬 Facial Verification: Detect identity clones in real-time.</li>
+     <li class="bg-gray-800 p-4 rounded-lg">👀 Liveness Detection: Prevent spoofing using motion detection.</li>
+     <li class="bg-gray-800 p-4 rounded-lg">🤖 Deepfake Detection: AI-based detection of manipulated media.</li>
+     <li class="bg-gray-800 p-4 rounded-lg">🔧 Secure User Management: Profiles, history, and custom settings.</li>
+   </ul>
+ </section>
+ 
+ <section class="p-6 bg-gray-800 mt-8 rounded-lg">
+   <h2 class="text-3xl font-semibold text-pink-400 mb-4">Deepfake Detection UI (Demo)</h2>
+   <p class="mb-4">Upload a video and our AI will analyze it for signs of deepfake manipulation (demo interface only).</p>
+   <div class="bg-black p-4 rounded shadow-md">
+     <input type="file" accept="video/*" class="mb-4 block w-full" id="deepfakeInput" />
+     <video id="deepfakeVideo" controls class="w-full rounded mb-4"></video>
+     <button class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded" onclick="analyzeDeepfake()">
+       Analyze Video
+     </button>
+     <p id="deepfakeResult" class="mt-4 text-green-300 font-mono"></p>
+   </div>
+ </section>
+ 
+ 
+ <section class="bg-black text-white py-12 px-6" id="applications" data-aos="fade-right">
+   <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
+     
+     <!-- Left Side Text -->
+     <div class="md:w-1/2">
+       <h2 class="text-4xl font-bold mb-6 text-white">APPLICATIONS</h2>
+       <ul class="list-disc pl-6 space-y-3 text-lg text-gray-200">
+         <li><strong>Banking:</strong> Secure login and ATM transactions.</li>
+         <li><strong>E-commerce:</strong> Prevent fake accounts and secure purchases.</li>
+         <li><strong>Restricted Access:</strong> Use in government facilities or private businesses.</li>
+         <li><strong>Educational Platforms</strong></li>
+         <li><strong>Travel and Immigration</strong></li>
+       </ul>
+     </div>
+ 
+   
+     <div class="md:w-1/2 flex justify-center">
+       <img src="face-scan-icon.png" alt="Face Scan Icon" class="w-64 h-64 object-contain drop-shadow-lg rounded-lg border border-gray-700" />
+     </div>
+ 
+   </div>
+ </section>
+ 
+ 
+ 
+ <section class="bg-black text-white py-10 px-6 rounded-lg mt-10">
+   <h2 class="text-4xl font-bold text-center text-pink-500 mb-10">🚀 Technologies Used</h2>
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+ 
+     <!-- Frontend -->
+     <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-start gap-4">
+       <div class="text-4xl">🧠</div>
+       <div>
+         <h3 class="text-xl font-semibold text-pink-400 mb-2">Frontend</h3>
+         <p>React.js for building fast, responsive, and dynamic user interfaces.</p>
+       </div>
+     </div>
+ 
+     <!-- Backend -->
+     <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-start gap-4">
+       <div class="text-4xl">🧪</div>
+       <div>
+         <h3 class="text-xl font-semibold text-pink-400 mb-2">Backend</h3>
+         <p>Flask or Django for RESTful API development, with MongoDB for database storage.</p>
+       </div>
+     </div>
+ 
+     <!-- AI Models -->
+     <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-start gap-4">
+       <div class="text-4xl">🧬</div>
+       <div>
+         <h3 class="text-xl font-semibold text-pink-400 mb-2">AI Models</h3>
+         <p>Convolutional Neural Networks (CNNs) for deep learning-based face and anomaly detection.</p>
+       </div>
+     </div>
+ 
+     <!-- Cloud Hosting -->
+     <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-start gap-4">
+       <div class="text-4xl">☁️</div>
+       <div>
+         <h3 class="text-xl font-semibold text-pink-400 mb-2">Cloud Hosting</h3>
+         <p>Hosted on AWS or Microsoft Azure for scalability, security, and performance.</p>
+       </div>
+     </div>
+ 
+   </div>
+ </section>
+ 
+ <head>
+   <meta charset="UTF-8">
+   <title>Deepfake Video Analyzer</title>
+   <style>
+     /* 1️⃣ Gradient background for body */
+     body {
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+       background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+       margin: 0;
+       padding: 0;
+     }
+ 
+     .container {
+       max-width: 600px;
+       margin: 4em auto;
+       background: white;
+       padding: 2em;
+       border-radius: 15px;
+       box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* 5️⃣ Smooth shadow */
+     }
+ 
+     h1 {
+       text-align: center;
+       color: #333;
+       margin-bottom: 1em;
+     }
+ 
+     /* 3️⃣ Border and color on file input */
+     input[type="file"] {
+       display: block;
+       margin: 1em 0;
+       padding: 0.5em;
+       border: 2px dashed #999;
+       border-radius: 8px;
+       background-color: #f9f9f9;
+       cursor: pointer;
+       width: 100%;
+     }
+ 
+     /* 2️⃣ Stylish button with gradient & hover */
+     button {
+       padding: 0.7em 1.5em;
+       background: linear-gradient(135deg, #6a11cb, #2575fc);
+       color: white;
+       border: none;
+       border-radius: 8px;
+       font-size: 1em;
+       cursor: pointer;
+       width: 100%;
+       transition: background 0.3s ease;
+     }
+ 
+     button:hover {
+       background: linear-gradient(135deg, #2575fc, #6a11cb);
+     }
+ 
+     video {
+       margin-top: 1.5em;
+       width: 100%;
+       max-height: 300px;
+       border: 2px solid #ccc;
+       border-radius: 10px;
+     }
+ 
+     /* 4️⃣ Light blue background result box */
+     #deepfakeResult {
+       margin-top: 1.5em;
+       font-weight: bold;
+       font-size: 1.2em;
+       text-align: center;
+       color: #222;
+       background-color: #e3f2fd;
+       padding: 1em;
+       border-radius: 8px;
+       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05); /* 5️⃣ Soft inner shadow */
+     }
+   </style>
+ </head>
+ <script>
+   async function analyzeDeepfake() {
+     const input = document.getElementById('deepfakeInput');
+     const video = document.getElementById('deepfakeVideo');
+     const result = document.getElementById('deepfakeResult');
+     const file = input.files[0];
+ 
+     if (!file) {
+       result.textContent = '⚠️ Please upload a video.';
+       return;
+     }
+ 
+     video.src = URL.createObjectURL(file);
+ 
+     const formData = new FormData();
+     formData.append('video', file);
+ 
+     result.textContent = '🔍 Analyzing...';
+ 
+     try {
+       const response = await fetch('http://localhost:3000/analyze', {
+         method: 'POST',
+         body: formData
+       });
+       const text = await response.text();
+       result.textContent = text;
+     } catch (err) {
+       result.textContent = '❌ Error analyzing video.';
+       console.error(err);
+     }
+   }
+ </script>
+ 
+ <script>
+   const video = document.getElementById('video')
+ 
+ Promise.all([
+   faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+   faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+   faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+   faceapi.nets.faceExpressionNet.loadFromUri('/models')
+ ]).then(startVideo)
+ 
+ function startVideo() {
+   navigator.getUserMedia(
+     { video: {} },
+     stream => video.srcObject = stream,
+     err => console.error(err)
+   )
+ }
+ 
+ video.addEventListener('play', () => {
+   const canvas = faceapi.createCanvasFromMedia(video)
+   document.body.append(canvas)
+   const displaySize = { width: video.width, height: video.height }
+   faceapi.matchDimensions(canvas, displaySize)
+   setInterval(async () => {
+     const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+     const resizedDetections = faceapi.resizeResults(detections, displaySize)
+     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+     faceapi.draw.drawDetections(canvas, resizedDetections)
+     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+     faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
+   }, 100)
+ })
+ </script>
+ 
+ 
+ 
+ 
+ <script>
+   const sections = document.querySelectorAll('section');
+   const revealOnScroll = () => {
+     const triggerBottom = window.innerHeight * 0.85;
+     sections.forEach(section => {
+       const boxTop = section.getBoundingClientRect().top;
+       if (boxTop < triggerBottom) {
+         section.classList.add('visible');
+       }
+     });
+   };
+   window.addEventListener('scroll', revealOnScroll);
+   window.addEventListener('load', revealOnScroll);
+ 
+   const canvas = document.getElementById("matrixCanvas");
+   const ctx = canvas.getContext("2d");
+   canvas.height = window.innerHeight;
+   canvas.width = window.innerWidth;
+   const matrix = "01";
+   const fontSize = 14;
+   const columns = canvas.width / fontSize;
+   const drops = Array(Math.floor(columns)).fill(1);
+   function drawMatrix() {
+     ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+     ctx.fillRect(0, 0, canvas.width, canvas.height);
+     ctx.fillStyle = "#00ff00";
+     ctx.font = fontSize + "px monospace";
+     for (let i = 0; i < drops.length; i++) {
+       const text = matrix[Math.floor(Math.random() * matrix.length)];
+       ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+       if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+         drops[i] = 0;
+       }
+       drops[i]++;
+     }
+   }
+   setInterval(drawMatrix, 33);
+ 
+ </script>
+ 
+ 
+ 
+ </body>
+ </html>
